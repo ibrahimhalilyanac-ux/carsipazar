@@ -1,0 +1,148 @@
+@{
+    ViewData["Title"] = "Nasıl İade Edebilirim";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Nasıl İade Edebilirim</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .refund-hero {
+        background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .refund-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .refund-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .refund-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .flow-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 30px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: transform 0.3s;
+    }
+    .flow-card:hover {
+        transform: translateY(-5px);
+    }
+    .flow-num {
+        width: 48px;
+        height: 48px;
+        background: #ede9fe;
+        color: #6366f1;
+        font-weight: 800;
+        font-size: 18px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .flow-title {
+        font-weight: 800;
+        font-size: 17px;
+        color: #1e293b;
+        margin-bottom: 10px;
+    }
+    .flow-desc {
+        font-size: 14px;
+        color: #64748b;
+        line-height: 1.6;
+    }
+    .info-bar {
+        background: #f8fafc;
+        border-left: 5px solid #6366f1;
+        border-radius: 0 16px 16px 0;
+        padding: 24px;
+        margin-bottom: 30px;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="refund-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>Kolay ve Zahmetsiz İade Süreci</h1>
+                <p>ÇarşıPazar'dan aldığınız ürünleri herhangi bir gerekçe göstermeksizin teslim aldığınız tarihten itibaren 14 gün içerisinde ücretsiz olarak iade edebilirsiniz.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(79,70,229,0.15));">🔄</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <h2 style="font-weight: 800; color: #1e293b;">4 Adımda Kolay İade</h2>
+        <p style="color: #64748b;">İade işlemlerinizi evinizden çıkmadan hızlıca tamamlamanız için izlemeniz gereken yollar.</p>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="flow-card">
+                <div class="flow-num">1</div>
+                <div class="flow-title">İade Talebi Oluştur</div>
+                <div class="flow-desc">"Siparişlerim" sayfasından iade etmek istediğin ürünü seçip "Kolay İade" butonuna tıkla.</div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="flow-card">
+                <div class="flow-num">2</div>
+                <div class="flow-title">Kargo Kodunu Al</div>
+                <div class="flow-desc">Ekranda beliren tamamen ücretsiz iade kargo gönderim kodunu bir yere not et veya kaydet.</div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="flow-card">
+                <div class="flow-num">3</div>
+                <div class="flow-title">Paketi Teslim Et</div>
+                <div class="flow-desc">Ürünü orijinal kutusu ve faturasıyla paketleyip seçtiğin kargo şubesine kod ile teslim et.</div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="flow-card">
+                <div class="flow-num">4</div>
+                <div class="flow-title">Ücret İadesi</div>
+                <div class="flow-desc">Ürün satıcıya ulaşıp onaylandıktan sonra, paran kartına anında iade edilir.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-bar">
+        <h4 class="font-weight-700 text-dark mb-2" style="font-weight: 700;">💡 Önemli İade Koşulları</h4>
+        <p class="text-muted mb-0" style="font-size: 14.5px;">İade edilecek ürünlerin orijinal ambalajında, hasarsız, kullanılmamış ve tekrar satılabilirlik özelliğini kaybetmemiş olması gerekmektedir. Kozmetik, iç giyim ve kişisel bakım ürünlerinde ambalajı açılmış ürünlerin iadesi kabul edilmemektedir.</p>
+    </div>
+</div>

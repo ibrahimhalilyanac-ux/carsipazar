@@ -1,0 +1,178 @@
+@{
+    string categoryName = ViewBag.CategoryName ?? "Tümü";
+}
+
+<div class="filter-sidebar shadow-sm">
+    <!-- Genel Kategori Bilgisi -->
+    <div class="p-3 border-bottom bg-light">
+        <h6 class="m-0 font-weight-bold text-dark">@categoryName</h6>
+    </div>
+
+    <!-- Marka Filter (Her Zaman Var) -->
+    <div class="filter-section active">
+        <div class="filter-title">
+            <span>Marka</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+            <div class="filter-search">
+                <input type="text" placeholder="Marka ara">
+            </div>
+            <div class="filter-list">
+                @if (categoryName.Contains("Giyim") || categoryName.Contains("Ayakkabı"))
+                {
+                    <label class="filter-item"><input type="checkbox"> <span>Koton</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Mavi</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>LC Waikiki</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Nike</span></label>
+                }
+                else if (categoryName.Contains("Elektronik"))
+                {
+                    <label class="filter-item"><input type="checkbox"> <span>Samsung</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Apple</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Xiaomi</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Asus</span></label>
+                }
+                else
+                {
+                    <label class="filter-item"><input type="checkbox"> <span>Diğer Markalar</span></label>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Fiyat Filter (Her Zaman Var) -->
+    <div class="filter-section">
+        <div class="filter-title">
+            <span>Fiyat</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+            <div class="price-inputs">
+                <input type="number" placeholder="En Az">
+                <input type="number" placeholder="En Çok">
+            </div>
+            <button class="btn-filter-apply mt-2">Uygula</button>
+        </div>
+    </div>
+
+    @if (categoryName.Contains("Giyim") || categoryName.Contains("Ayakkabı") || categoryName.Contains("Bebek"))
+    {
+        <!-- Beden Filtresi -->
+        <div class="filter-section">
+            <div class="filter-title">
+                <span>Beden</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="filter-content">
+                <div class="filter-list">
+                    @if (categoryName.Contains("Ayakkabı"))
+                    {
+                        <label class="filter-item"><input type="checkbox"> <span>38</span></label>
+                        <label class="filter-item"><input type="checkbox"> <span>40</span></label>
+                        <label class="filter-item"><input type="checkbox"> <span>42</span></label>
+                        <label class="filter-item"><input type="checkbox"> <span>44</span></label>
+                    }
+                    else
+                    {
+                        <label class="filter-item"><input type="checkbox"> <span>XS</span></label>
+                        <label class="filter-item"><input type="checkbox"> <span>S</span></label>
+                        <label class="filter-item"><input type="checkbox"> <span>M</span></label>
+                        <label class="filter-item"><input type="checkbox"> <span>L</span></label>
+                        <label class="filter-item"><input type="checkbox"> <span>XL</span></label>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Cinsiyet Filtresi -->
+        <div class="filter-section">
+            <div class="filter-title">
+                <span>Cinsiyet</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="filter-content">
+                <div class="filter-list">
+                    <label class="filter-item"><input type="checkbox"> <span>Kadın</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Erkek</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Unisex</span></label>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (categoryName.Contains("Elektronik"))
+    {
+        <!-- Elektronik Spesifik: Ekran Boyutu -->
+        <div class="filter-section">
+            <div class="filter-title">
+                <span>Ekran Boyutu</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="filter-content">
+                <div class="filter-list">
+                    <label class="filter-item"><input type="checkbox"> <span>6.1 inç</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>6.7 inç</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>13.3 inç</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>15.6 inç</span></label>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (categoryName.Contains("Ev") || categoryName.Contains("Mutfak"))
+    {
+        <!-- Ev/Mutfak Spesifik: Malzeme -->
+        <div class="filter-section">
+            <div class="filter-title">
+                <span>Malzeme</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="filter-content">
+                <div class="filter-list">
+                    <label class="filter-item"><input type="checkbox"> <span>Ahşap</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Metal</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Plastik</span></label>
+                    <label class="filter-item"><input type="checkbox"> <span>Porselen</span></label>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Renk Filter (Genellikle Her Şeyde Var) -->
+    <div class="filter-section">
+        <div class="filter-title">
+            <span>Renk</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+            <div class="filter-list">
+                <label class="filter-item">
+                    <input type="checkbox"> <span class="badge badge-dark rounded-circle mr-2" style="width:12px; height:12px;">&nbsp;</span> Siyah
+                </label>
+                <label class="filter-item">
+                    <input type="checkbox"> <span class="badge badge-light border rounded-circle mr-2" style="width:12px; height:12px;">&nbsp;</span> Beyaz
+                </label>
+                <label class="filter-item">
+                    <input type="checkbox"> <span class="badge badge-primary rounded-circle mr-2" style="width:12px; height:12px;">&nbsp;</span> Mavi
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Accordion Toggle Logic
+    document.querySelectorAll('.filter-title').forEach(title => {
+        title.addEventListener('click', () => {
+            const section = title.parentElement;
+            section.classList.toggle('active');
+            const content = section.querySelector('.filter-content');
+            if (section.classList.contains('active')) {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        });
+    });
+</script>

@@ -1,0 +1,209 @@
+@model List<MultiShop.DtoLayer.CatalogDtos.AboutDtos.ResultAboutDto>
+@{
+    ViewData["Title"] = "Hakkımızda";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+    var about = Model.FirstOrDefault();
+}
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Hakkımızda</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<style>
+    .about-hero {
+        background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .about-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .about-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .about-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .about-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 40px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: transform 0.3s;
+    }
+    .about-card:hover {
+        transform: translateY(-5px);
+    }
+    .feature-badge {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: #f8fafc;
+        border: 1.5px solid #f1f5f9;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: all 0.3s;
+    }
+    .feature-badge:hover {
+        border-color: #818cf8;
+        background: #f5f3ff;
+    }
+    .feature-icon {
+        font-size: 28px;
+        background: #ede9fe;
+        color: #7c3aed;
+        width: 54px;
+        height: 54px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .feature-title {
+        font-weight: 700;
+        font-size: 16px;
+        color: #1e293b;
+        margin-bottom: 4px;
+    }
+    .feature-desc {
+        font-size: 13px;
+        color: #64748b;
+        margin: 0;
+    }
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        font-size: 15px;
+        color: #334155;
+    }
+    .contact-item i {
+        color: #7c3aed;
+        font-size: 18px;
+        width: 24px;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <!-- Hero Section -->
+    <div class="about-hero text-center text-md-left">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>Geleceğin Alışveriş Deneyimi</h1>
+                <p>Türkiye'nin öncü e-ticaret platformu ÇarşıPazar olarak, milyonlarca ürünü güvenli ve hızlı bir şekilde kapınıza ulaştırıyoruz.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 120px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));">🛍️</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="row mb-5">
+        <!-- Text & Contact -->
+        <div class="col-lg-6 mb-4">
+            <div class="about-card">
+                <h3 class="font-weight-800 text-uppercase mb-4" style="color: #1e293b; font-size: 22px; font-weight: 800;">Biz Kimiz?</h3>
+                <p style="font-size: 15px; line-height: 1.8; color: #475569; margin-bottom: 30px; text-align: justify;">
+                    @if (about != null && !string.IsNullOrEmpty(about.Description))
+                    {
+                        @about.Description
+                    }
+                    else
+                    {
+                        <span>ÇarşıPazar, kurulduğu ilk günden itibaren müşteri memnuniyetini en üst düzeyde tutmayı ilke edinmiş, yenilikçi ve dinamik bir alışveriş platformudur. Teknoloji, moda, ev & yaşam ve kozmetik gibi onlarca kategoride, binlerce seçkin ürünü en avantajlı fiyatlarla sunarak Türkiye genelinde güvenli alışverişin adresi olmaya devam ediyoruz.</span>
+                    }
+                </p>
+
+                @if (about != null)
+                {
+                    <h4 class="font-weight-700 mb-3" style="color: #1e293b; font-size: 16px; font-weight: 700;">📍 İletişim Bilgilerimiz</h4>
+                    <div class="contact-list mt-3">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span><strong>Adres:</strong> @about.Address</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span><strong>E-posta:</strong> @about.Email</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span><strong>Telefon:</strong> @about.Phone</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="col-lg-6 mb-4">
+            <div class="about-card" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                <h3 class="font-weight-800 text-uppercase mb-4" style="color: #1e293b; font-size: 22px; font-weight: 800; padding-left: 20px;">Neden ÇarşıPazar?</h3>
+                
+                <div class="feature-badge">
+                    <div class="feature-icon">🚀</div>
+                    <div>
+                        <div class="feature-title">Işık Hızında Teslimat</div>
+                        <div class="feature-desc">Siparişlerinizi aynı gün kargoya teslim ediyor, en kısa sürede kapınıza ulaştırıyoruz.</div>
+                    </div>
+                </div>
+
+                <div class="feature-badge">
+                    <div class="feature-icon">🛡️</div>
+                    <div>
+                        <div class="feature-title">%100 Güvenli Ödeme</div>
+                        <div class="feature-desc">En yüksek güvenlik sertifikalarıyla kart bilgilerinizi koruyor, huzurlu alışveriş sunuyoruz.</div>
+                    </div>
+                </div>
+
+                <div class="feature-badge">
+                    <div class="feature-icon">🌟</div>
+                    <div>
+                        <div class="feature-title">Orijinal Ürün Garantisi</div>
+                        <div class="feature-desc">Satışa sunduğumuz tüm ürünler yetkili bayilerden temin edilen orijinal ürünlerdir.</div>
+                    </div>
+                </div>
+
+                <div class="feature-badge">
+                    <div class="feature-icon">📞</div>
+                    <div>
+                        <div class="feature-title">7/24 Kesintisiz Destek</div>
+                        <div class="feature-desc">Müşteri temsilcilerimiz soru ve önerileriniz için her zaman yardıma hazır.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

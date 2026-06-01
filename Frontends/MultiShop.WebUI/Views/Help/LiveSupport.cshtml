@@ -1,0 +1,217 @@
+@{
+    ViewData["Title"] = "Canlı Yardım";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Canlı Yardım</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .chat-hero {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(5, 150, 105, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .chat-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .chat-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .chat-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .chat-container {
+        background: #fff;
+        border-radius: 24px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+    .chat-header {
+        background: #10b981;
+        color: white;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .chat-avatar {
+        width: 48px;
+        height: 48px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+    }
+    .chat-status {
+        width: 10px;
+        height: 10px;
+        background: #4ade80;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    .chat-box {
+        height: 380px;
+        overflow-y: auto;
+        padding: 30px;
+        background: #f8fafc;
+    }
+    .chat-bubble {
+        max-width: 70%;
+        padding: 14px 20px;
+        border-radius: 18px;
+        margin-bottom: 20px;
+        font-size: 14.5px;
+        line-height: 1.6;
+    }
+    .chat-bubble.incoming {
+        background: #fff;
+        color: #1e293b;
+        border: 1px solid #e2e8f0;
+        border-top-left-radius: 0;
+    }
+    .chat-bubble.outgoing {
+        background: #10b981;
+        color: white;
+        margin-left: auto;
+        border-top-right-radius: 0;
+    }
+    .chat-footer {
+        padding: 20px 30px;
+        background: #fff;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        gap: 15px;
+    }
+    .chat-input {
+        flex: 1;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        padding: 12px 20px;
+        outline: none;
+        transition: border 0.3s;
+    }
+    .chat-input:focus {
+        border-color: #10b981;
+    }
+    .chat-send-btn {
+        background: #10b981;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+    .chat-send-btn:hover {
+        background: #059669;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="chat-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>7/24 Canlı Destek</h1>
+                <p>Müşteri danışmanlarımız, tüm soru, öneri ve taleplerinizi dinlemek ve hızlıca çözüm üretmek için haftanın her günü, günün her saati buradalar.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(5,150,105,0.15));">💬</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">🤖</div>
+                    <div>
+                        <div class="font-weight-700" style="font-weight: 700; font-size: 16px;">ÇarşıPazar Asistanı</div>
+                        <div class="d-flex align-items-center gap-2" style="font-size: 12px; opacity: 0.9;">
+                            <span class="chat-status"></span> Çevrimiçi
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-box" id="chatBox">
+                    <div class="chat-bubble incoming">
+                        Merhaba! ÇarşıPazar Asistanına hoş geldiniz. 😊 Bugün size nasıl yardımcı olabilirim? Aşağıya mesajınızı yazıp gönderebilirsiniz.
+                    </div>
+                </div>
+
+                <div class="chat-footer">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Mesajınızı buraya yazın..." onkeypress="handleKeyPress(event)">
+                    <button class="chat-send-btn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const chatBox = document.getElementById('chatBox');
+        
+        // Outgoing message
+        const outMsg = document.createElement('div');
+        outMsg.className = 'chat-bubble outgoing';
+        outMsg.innerText = text;
+        chatBox.appendChild(outMsg);
+        
+        input.value = '';
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Auto Bot Response
+        setTimeout(() => {
+            const inMsg = document.createElement('div');
+            inMsg.className = 'chat-bubble incoming';
+            inMsg.innerText = "Mesajınızı aldım! Sizi saniyeler içinde yetkili bir canlı destek temsilcimize aktarıyorum. Lütfen ayrılmayın...";
+            chatBox.appendChild(inMsg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+    }
+
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    }
+</script>

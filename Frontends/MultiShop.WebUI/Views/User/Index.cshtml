@@ -1,0 +1,116 @@
+@model UserDetailViewModel
+@{
+    ViewData["Title"] = "Kullanıcı Bilgilerim";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="profile-container">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="profile-sidebar shadow-sm">
+                    <div class="sidebar-header">
+                        <h4>Hesabım</h4>
+                        <small class="text-muted">@Model.Email</small>
+                    </div>
+                    
+                    <div class="sidebar-section-title">Siparişlerim</div>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-menu-item"><a href="#"><i class="fas fa-box"></i> Tüm Siparişlerim</a></li>
+                        <li class="sidebar-menu-item"><a href="#"><i class="fas fa-star"></i> Değerlendirmelerim</a></li>
+                    </ul>
+
+                    <div class="sidebar-section-title">Hesabım & Yardım</div>
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-menu-item active"><a href="/User/Index"><i class="fas fa-user"></i> Kullanıcı Bilgilerim</a></li>
+                        <li class="sidebar-menu-item"><a href="#"><i class="fas fa-map-marker-alt"></i> Adres Bilgilerim</a></li>
+                        <li class="sidebar-menu-item"><a href="#"><i class="fas fa-credit-card"></i> Kayıtlı Kartlarım</a></li>
+                        <li class="sidebar-menu-item"><a href="#"><i class="fas fa-lock"></i> Şifre Değişikliği</a></li>
+                        <li class="sidebar-menu-item text-danger"><a href="/Login/LogOut"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a></li>
+                    </ul>
+                </div>
+
+                <!-- Banner Area (Like Screenshot) -->
+                <div class="mt-4 rounded overflow-hidden shadow-sm">
+                    <img src="https://cdn.dsmcdn.com/mrktng/crm/2023/wallet/wallet_banner.png" class="img-fluid" alt="Promo">
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="profile-content shadow-sm">
+                    <div class="content-header">
+                        <h2>Kullanıcı Bilgilerim</h2>
+                        <p class="text-muted">Kişisel bilgilerinizi buradan güncelleyebilirsiniz.</p>
+                    </div>
+
+                    <div class="alert alert-info d-flex align-items-center" role="alert">
+                        <i class="fas fa-check-circle mr-3 fa-2x"></i>
+                        <div>
+                            E-posta adresiniz doğrulanmıştır.
+                        </div>
+                    </div>
+
+                    <form class="profile-form mt-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Ad</label>
+                                    <input type="text" class="form-control" value="@Model.Name" placeholder="Adınız">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Soyad</label>
+                                    <input type="text" class="form-control" value="@Model.Surname" placeholder="Soyadınız">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>E-posta Adresi</label>
+                            <input type="email" class="form-control" value="@Model.Email" readonly style="background-color: #f8f9fa;">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Cep Telefonu</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">+90</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="5xx xxx xx xx">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Doğum Tarihi</label>
+                                    <div class="d-flex gap-2">
+                                        <select class="form-control mr-1"><option>Gün</option></select>
+                                        <select class="form-control mr-1"><option>Ay</option></select>
+                                        <select class="form-control"><option>Yıl</option></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="custom-control custom-checkbox my-4">
+                            <input type="checkbox" class="custom-control-input" id="marketing">
+                            <label class="custom-control-label text-muted" for="marketing" style="font-size: 13px;">
+                                İş yeri alışverişlerim için fırsatlardan haberdar olmak istiyorum.
+                            </label>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mt-5">
+                            <button type="button" class="btn btn-update">Güncelle</button>
+                            <a href="#" class="text-muted" style="font-size: 13px; text-decoration: underline;">Hesabımı Kapat</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

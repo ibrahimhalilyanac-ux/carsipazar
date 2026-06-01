@@ -1,0 +1,145 @@
+@{
+    ViewData["Title"] = "Satış Yap";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Satış Yap</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .seller-hero {
+        background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(67, 56, 202, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .seller-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .seller-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .seller-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .form-card {
+        background: #fff;
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        border: 1px solid #e2e8f0;
+        padding: 40px;
+    }
+    .prop-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 30px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: transform 0.3s;
+    }
+    .prop-card:hover {
+        transform: translateY(-5px);
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="seller-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>İşinizi ÇarşıPazar ile Büyütün</h1>
+                <p>Türkiye'nin en hızlı büyüyen e-ticaret platformunda yerinizi alın, milyonlarca aktif müşteriye anında ulaşarak satışlarınızı katlayın.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">📈</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4">
+            <h2 class="font-weight-800 text-dark mb-4" style="font-weight: 800;">Neden ÇarşıPazar'da Satış Yapmalısınız?</h2>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="prop-card">
+                        <div style="font-size: 32px; margin-bottom: 12px;">🌍</div>
+                        <h4 class="font-weight-700 text-dark" style="font-weight: 700; font-size: 16px;">Geniş Müşteri Ağı</h4>
+                        <p class="text-muted" style="font-size: 13.5px;">Her gün milyonlarca ziyaretçinin alışveriş yaptığı pazaryerinde yer alarak marka bilinirliğinizi artırın.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="prop-card">
+                        <div style="font-size: 32px; margin-bottom: 12px;">🛠️</div>
+                        <h4 class="font-weight-700 text-dark" style="font-weight: 700; font-size: 16px;">Kolay Yönetim</h4>
+                        <p class="text-muted" style="font-size: 13.5px;">Gelişmiş satıcı paneli sayesinde siparişlerinizi, stoklarınızı ve faturalarınızı tek tıkla zahmetsizce yönetin.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="prop-card">
+                        <div style="font-size: 32px; margin-bottom: 12px;">💸</div>
+                        <h4 class="font-weight-700 text-dark" style="font-weight: 700; font-size: 16px;">Hızlı Ödemeler</h4>
+                        <p class="text-muted" style="font-size: 13.5px;">Gerçekleşen satışlarınızın ödemelerini, belirlenen vadelerde ve gecikmesiz olarak hesabınıza aktarın.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="prop-card">
+                        <div style="font-size: 32px; margin-bottom: 12px;">📞</div>
+                        <h4 class="font-weight-700 text-dark" style="font-weight: 700; font-size: 16px;">Özel Satıcı Desteği</h4>
+                        <p class="text-muted" style="font-size: 13.5px;">Satış süreçlerinizde aklınıza takılan her konuda, satıcı destek ekibimizle anında iletişime geçin.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="form-card">
+                <h3 class="font-weight-800 text-dark mb-4 text-center" style="font-weight: 800;">Satıcı Başvuru Formu</h3>
+                <form onsubmit="event.preventDefault(); alert('Başvurunuz başarıyla alındı! Temsilcimiz en kısa sürede sizinle iletişime geçecektir.');">
+                    <div class="form-group mb-3">
+                        <label class="text-dark font-weight-600">Şirket Adı / Ünvanı</label>
+                        <input type="text" class="form-control" placeholder="Örn: ABC Pazarlama Tic. Ltd. Şti." required style="border-radius: 10px; padding: 12px;">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="text-dark font-weight-600">Yetkili Adı Soyadı</label>
+                        <input type="text" class="form-control" placeholder="Örn: Ahmet Yılmaz" required style="border-radius: 10px; padding: 12px;">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="text-dark font-weight-600">E-posta Adresi</label>
+                        <input type="email" class="form-control" placeholder="Örn: yetkili@sirketiniz.com" required style="border-radius: 10px; padding: 12px;">
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="text-dark font-weight-600">Telefon Numarası</label>
+                        <input type="tel" class="form-control" placeholder="Örn: 0555 123 45 67" required style="border-radius: 10px; padding: 12px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block font-weight-700" style="border-radius: 12px; padding: 14px; background: #4f46e5; border: none; font-size: 16px;">Başvuruyu Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

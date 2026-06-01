@@ -1,0 +1,174 @@
+@{
+    ViewData["Title"] = "Sıkça Sorulan Sorular";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Sıkça Sorulan Sorular</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .faq-hero {
+        background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(29, 78, 216, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .faq-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .faq-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .faq-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .faq-item {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        transition: all 0.3s;
+    }
+    .faq-header {
+        padding: 22px 28px;
+        font-weight: 700;
+        font-size: 16px;
+        color: #1e293b;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        user-select: none;
+    }
+    .faq-body {
+        padding: 0 28px;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease-out;
+        color: #64748b;
+        font-size: 14.5px;
+        line-height: 1.7;
+    }
+    .faq-item.active {
+        border-color: #3b82f6;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.08);
+    }
+    .faq-item.active .faq-body {
+        padding-bottom: 24px;
+        max-height: 200px;
+    }
+    .faq-icon {
+        transition: transform 0.3s;
+        font-size: 18px;
+        color: #3b82f6;
+    }
+    .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="faq-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>Size Nasıl Yardımcı Olabiliriz?</h1>
+                <p>Alışveriş, sipariş takibi, iade koşulları ve üyelik işlemleri hakkında en çok merak edilen tüm soruların yanıtlarını burada bulabilirsiniz.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(29,78,216,0.15));">❓</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>📦 Siparişimi nasıl takip edebilirim?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-body">
+                    Siparişinizi tamamladıktan sonra üye girişi yaparak "Hesabım > Siparişlerim" adımlarını takip edebilir, kargonuzun nerede olduğunu anlık olarak görüntüleyebilirsiniz. Ayrıca kargo çıkışı yapıldığında SMS ile bilgilendirme gönderilir.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>🚚 Kargo ücreti ne kadar?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-body">
+                    ÇarşıPazar üzerinde 150 TL ve üzeri siparişlerinizde standart kargo tamamen ücretsizdir. 150 TL altındaki siparişleriniz için ise kargo ücreti sepetinizde dinamik olarak hesaplanarak yansıtılır.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>🔑 Şifremi unuttum, hesabıma nasıl giriş yapabilirim?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-body">
+                    Giriş sayfasında yer alan "Şifremi Unuttum" linkine tıklayarak hesabınıza kayıtlı e-posta adresinizi giriniz. Adresinize gönderilecek sıfırlama linki ile dakikalar içinde güvenli yeni bir şifre belirleyebilirsiniz.
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <div class="faq-header" onclick="toggleFaq(this)">
+                    <span>🔄 Ürün iade süresi kaç gündür?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-body">
+                    Satın aldığınız ürünleri, teslim aldığınız tarihten itibaren 14 gün içerisinde herhangi bir gerekçe göstermeksizin ve kargo ücreti ödemeden kolayca iade edebilirsiniz.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleFaq(header) {
+        const item = header.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        // Close all faq items
+        document.querySelectorAll('.faq-item').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        // If it wasn't active, open it
+        if (!isActive) {
+            item.classList.add('active');
+        }
+    }
+</script>

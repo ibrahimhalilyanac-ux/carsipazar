@@ -1,0 +1,196 @@
+@{
+    ViewData["Title"] = "Kariyer";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Kariyer</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .career-hero {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(29, 78, 216, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .career-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .career-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .career-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .val-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 30px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: all 0.3s ease;
+    }
+    .val-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .val-icon {
+        font-size: 32px;
+        background: #eff6ff;
+        color: #2563eb;
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .val-title {
+        font-weight: 800;
+        font-size: 18px;
+        color: #1e293b;
+        margin-bottom: 10px;
+    }
+    .val-desc {
+        font-size: 14px;
+        color: #64748b;
+        line-height: 1.6;
+    }
+    .job-badge {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f8fafc;
+        border: 1.5px solid #f1f5f9;
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 20px;
+        transition: all 0.3s;
+    }
+    .job-badge:hover {
+        border-color: #3b82f6;
+        background: #eff6ff;
+        transform: scale(1.01);
+    }
+    .job-title {
+        font-weight: 700;
+        font-size: 17px;
+        color: #1e293b;
+    }
+    .job-dept {
+        font-size: 13px;
+        color: #64748b;
+        margin-top: 4px;
+    }
+    .job-meta {
+        font-size: 13px;
+        color: #2563eb;
+        background: #eff6ff;
+        padding: 6px 16px;
+        border-radius: 99px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="career-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>Geleceği Birlikte İnşa Edelim</h1>
+                <p>ÇarşıPazar ekibine katılarak e-ticaretin geleceğini şekillendiren dinamik, yenilikçi ve sınırları zorlayan bir topluluğun parçası olun.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">🚀</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <h2 style="font-weight: 800; color: #1e293b;">Değerlerimiz</h2>
+        <p style="color: #64748b; max-width: 600px; margin: 10px auto 0;">Bizleri biz yapan, her adımımızda rehberimiz olan temel inançlarımız.</p>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="val-card">
+                <div class="val-icon">🤝</div>
+                <div class="val-title">Güçlü İş Birliği</div>
+                <div class="val-desc">Birlikte üretmeye inanır, fikirlerimizi şeffaf bir şekilde paylaşır ve birbirimizin gelişimini destekleriz.</div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="val-card">
+                <div class="val-icon">💡</div>
+                <div class="val-title">Sürekli Yenilikçilik</div>
+                <div class="val-desc">Alışılmışın dışına çıkmaktan korkmaz, teknolojiyi en üst seviyede kullanarak daima yeniyi ararız.</div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="val-card">
+                <div class="val-icon">🎯</div>
+                <div class="val-title">Müşteri Odaklılık</div>
+                <div class="val-desc">Kararlarımızın merkezine her zaman kullanıcılarımızı yerleştirir ve onların memnuniyeti için çalışırız.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="text-center mb-4">
+                <h2 style="font-weight: 800; color: #1e293b;">Açık Pozisyonlar</h2>
+                <p style="color: #64748b;">Gelin ve ekibimizin bir parçası olun. Güncel ilanlarımızı inceleyin:</p>
+            </div>
+
+            <div class="job-badge">
+                <div>
+                    <div class="job-title">Senior .NET Backend Developer</div>
+                    <div class="job-dept">Teknoloji & Yazılım Departmanı</div>
+                </div>
+                <span class="job-meta">Tam Zamanlı (Remote)</span>
+            </div>
+
+            <div class="job-badge">
+                <div>
+                    <div class="job-title">UI/UX Designer</div>
+                    <div class="job-dept">Ürün & Tasarım Departmanı</div>
+                </div>
+                <span class="job-meta">Tam Zamanlı (İstanbul / Hibrit)</span>
+            </div>
+
+            <div class="job-badge">
+                <div>
+                    <div class="job-title">Digital Marketing Specialist</div>
+                    <div class="job-dept">Pazarlama & Büyüme Departmanı</div>
+                </div>
+                <span class="job-meta">Tam Zamanlı (İstanbul Ofis)</span>
+            </div>
+        </div>
+    </div>
+</div>

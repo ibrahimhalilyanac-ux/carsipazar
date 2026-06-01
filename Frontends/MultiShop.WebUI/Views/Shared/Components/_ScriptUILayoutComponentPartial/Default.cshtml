@@ -1,0 +1,184 @@
+<style>
+    /* ===== PREMIUM TOAST NOTIFICATION STYLES ===== */
+    #toast-container {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .custom-toast {
+        min-width: 320px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-left: 5px solid #ff6f3c; /* Trendyol Orange */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 600;
+        color: #1e1e30;
+        font-family: 'Inter', 'Outfit', sans-serif;
+        transform: translateX(120%);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+        opacity: 0;
+    }
+
+    .custom-toast.show {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .custom-toast.success {
+        border-left-color: #ff3f6c; /* Trendyol Pink/Red */
+    }
+
+    .custom-toast.info {
+        border-left-color: #6c757d; /* Silver Gray */
+    }
+
+    .custom-toast-icon {
+        font-size: 22px;
+        animation: pulseHeart 0.5s ease infinite alternate;
+    }
+
+    @@keyframes pulseHeart {
+        from { transform: scale(1); }
+        to { transform: scale(1.15); }
+    }
+
+    .custom-toast-message {
+        font-size: 14px;
+    }
+</style>
+
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="~/online-shop-website-template/lib/easing/easing.min.js"></script>
+<script src="~/online-shop-website-template/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="~/online-shop-website-template/mail/jqBootstrapValidation.min.js"></script>
+<script src="~/online-shop-website-template/mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="~/online-shop-website-template/js/main.js"></script>
+
+<script>
+    function showToast(message, type = 'info') {
+        let container = document.getElementById('toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = 'toast-container';
+            document.body.appendChild(container);
+        }
+
+        const toast = document.createElement('div');
+        toast.className = `custom-toast ${type}`;
+        
+        let icon = type === 'success' ? '💖' : '💔';
+        
+        toast.innerHTML = `
+            <span class="custom-toast-icon">${icon}</span>
+            <span class="custom-toast-message">${message}</span>
+        `;
+
+        container.appendChild(toast);
+
+        // Animate in
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 50);
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                toast.remove();
+            }, 400);
+        }, 3000);
+    }
+
+    function updateFavoriteCount() {
+        // If user is not logged in, completely hide the badge and reset local storage
+        if (typeof isUserAuthenticated === 'undefined' || !isUserAuthenticated) {
+            $('#favoriteCountBadge').hide();
+            localStorage.removeItem('favorites');
+            return;
+        }
+
+        let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+        
+        if (favs.length > 0) {
+            $('#favoriteCountBadge').text(favs.length).show();
+        } else {
+            $('#favoriteCountBadge').hide();
+        }
+
+        // Sync all favorite buttons on the page
+        $('.product-favorite-btn').each(function() {
+            let pid = $(this).attr('data-product-id');
+            let icon = $(this).find('i');
+            if (favs.includes(pid)) {
+                icon.removeClass('far').addClass('fas').css('color', '#ff3f6c');
+                $(this).addClass('active');
+            } else {
+                icon.removeClass('fas').addClass('far').css('color', '');
+                $(this).removeClass('active');
+            }
+        });
+    }
+
+    function toggleFavorite(productId) {
+        let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+        const index = favs.indexOf(productId);
+        
+        // Dynamic AJAX sync with Server-Side Cookie
+        fetch('/Favorite/ToggleFavoriteAjax/' + productId)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    if (data.isFavorite) {
+                        if (!favs.includes(productId)) favs.push(productId);
+                        showToast("Ürün favorilere eklendi!", "success");
+                    } else {
+                        const idx = favs.indexOf(productId);
+                        if (idx > -1) favs.splice(idx, 1);
+                        showToast("Ürün favorilerden çıkarıldı!", "info");
+                    }
+                    localStorage.setItem('favorites', JSON.stringify(favs));
+                    updateFavoriteCount();
+                    
+                    // If on favorites page, reload dynamically to show changes
+                    if (window.location.pathname.toLowerCase().includes('/favorite/index') || window.location.pathname.toLowerCase().includes('/favorite')) {
+                        setTimeout(() => { window.location.reload(); }, 600);
+                    }
+                }
+            })
+            .catch(() => {
+                // Graceful fallback to client-side localStorage if server/network fails
+                if (index > -1) {
+                    favs.splice(index, 1);
+                    showToast("Ürün favorilerden çıkarıldı!", "info");
+                } else {
+                    favs.push(productId);
+                    showToast("Ürün favorilere eklendi!", "success");
+                }
+                localStorage.setItem('favorites', JSON.stringify(favs));
+                updateFavoriteCount();
+            });
+    }
+
+    $(document).ready(function() {
+        updateFavoriteCount();
+    });
+</script>

@@ -1,0 +1,171 @@
+@{
+    ViewData["Title"] = "Aktif Kampanyalar";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Kampanyalar</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .campaign-hero {
+        background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(234, 88, 12, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .campaign-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .campaign-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .campaign-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .c-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+        height: 100%;
+        transition: all 0.3s ease;
+    }
+    .c-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 40px rgba(234, 88, 12, 0.1);
+    }
+    .c-banner {
+        height: 180px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+    }
+    .c-badge {
+        background: #f97316;
+        color: white;
+        padding: 6px 14px;
+        border-radius: 99px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+    }
+    .c-body {
+        padding: 25px;
+    }
+    .c-title {
+        font-weight: 800;
+        font-size: 19px;
+        color: #1e293b;
+        margin-bottom: 10px;
+    }
+    .c-desc {
+        font-size: 14px;
+        color: #64748b;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .c-btn {
+        background: #f97316;
+        color: white;
+        border-radius: 12px;
+        padding: 10px 20px;
+        font-weight: 700;
+        font-size: 14px;
+        display: inline-block;
+        transition: all 0.3s;
+        border: none;
+        width: 100%;
+        text-align: center;
+    }
+    .c-btn:hover {
+        background: #ea580c;
+        color: white;
+        box-shadow: 0 4px 15px rgba(234, 88, 12, 0.2);
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="campaign-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>Fırsatlarla Dolu Kampanyalar</h1>
+                <p>ÇarşıPazar'da her güne özel yüzlerce yeni kampanya, sürpriz kupon ve kaçırılmayacak indirimler sizi bekliyor.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">💥</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <!-- Campaign 1 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="c-card">
+                <div class="c-banner" style="background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);">
+                    <span class="c-badge">Sezon Sonu</span>
+                </div>
+                <div class="c-body">
+                    <div class="c-title">Dev Bahar İndirimi</div>
+                    <div class="c-desc">Moda, ayakkabı ve aksesuar kategorilerindeki tüm seçkin markalarda sepette net %50 indirim fırsatını kaçırmayın.</div>
+                    <a href="/ProductList/Index" class="c-btn">Alışverişe Başla</a>
+                </div>
+            </div>
+        </div>
+        <!-- Campaign 2 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="c-card">
+                <div class="c-banner" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                    <span class="c-badge">Yeni Üye</span>
+                </div>
+                <div class="c-body">
+                    <div class="c-title">İlk Siparişe Özel Kargo Bedava</div>
+                    <div class="c-desc">ÇarşıPazar ailesine yeni katılan tüm kullanıcılarımıza özel, ilk 150 TL ve üzeri siparişlerinde kargo tamamen ücretsiz!</div>
+                    <a href="/ProductList/Index" class="c-btn">Kuponu Kullan</a>
+                </div>
+            </div>
+        </div>
+        <!-- Campaign 3 -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="c-card">
+                <div class="c-banner" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                    <span class="c-badge">Elektronik</span>
+                </div>
+                <div class="c-body">
+                    <div class="c-title">Teknoloji Günleri Başladı</div>
+                    <div class="c-desc">Telefon, laptop, kulaklık ve en popüler akıllı ev aksesuarlarında kaçırılmayacak fiyatlar ve peşin fiyatına taksit avantajı.</div>
+                    <a href="/ProductList/Index" class="c-btn">Fırsatları İncele</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

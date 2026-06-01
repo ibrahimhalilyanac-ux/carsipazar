@@ -1,0 +1,117 @@
+@{
+    ViewData["Title"] = "İşlem Rehberi";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">İşlem Rehberi</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .guide-hero {
+        background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .guide-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .guide-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .guide-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .guide-box {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 30px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: transform 0.3s;
+    }
+    .guide-box:hover {
+        transform: translateY(-5px);
+    }
+    .guide-title {
+        font-weight: 800;
+        font-size: 18px;
+        color: #1e293b;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .guide-desc {
+        font-size: 14px;
+        color: #64748b;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="guide-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>İşlem Rehberi</h1>
+                <p>ÇarşıPazar üzerinden nasıl üye olabileceğiniz, sipariş verebileceğiniz ve ödeme adımlarını nasıl tamamlayabileceğiniz konusunda merak ettiğiniz her şey bu rehberde.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(79,70,229,0.15));">📋</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4">
+            <div class="guide-box">
+                <div class="guide-title"><span>👤</span> 1. Üyelik ve Giriş İşlemleri</div>
+                <div class="guide-desc">Sitemize saniyeler içinde üye olabilirsiniz. Sağ üst köşede yer alan "Kayıt Ol" butonuna tıklayarak adınız, soyadınız, e-posta adresiniz ve şifrenizle hemen hesabınızı oluşturabilirsiniz. Üye girişi yaptıktan sonra kişisel bilgilerinizi ve teslimat adreslerinizi hesabım menüsünden yönetebilirsiniz.</div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="guide-box">
+                <div class="guide-title"><span>🔍</span> 2. Ürün Arama ve Sepete Ekleme</div>
+                <div class="guide-desc">Ana sayfadaki arama çubuğunu veya kategori menülerini kullanarak dilediğiniz ürünü bulabilir, ürün detay sayfasındaki "Sepete Ekle" butonuna tıklayarak ürünü sepetinize ekleyebilirsiniz. Sepet sayfasından adetleri güncelleyebilir veya ürünleri çıkartabilirsiniz.</div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="guide-box">
+                <div class="guide-title"><span>💳</span> 3. Ödeme ve Siparişin Tamamlanması</div>
+                <div class="guide-desc">Sepetinizden "Alışverişi Tamamla" butonuna ilerlediğinizde, teslimat adresinizi seçmeniz veya yeni adres tanımlamanız istenir. Ardından, kredi/banka kartı bilgilerinizi girip 3D Secure güvencesiyle veya isterseniz "Alışveriş Kredisi" seçeneğiyle siparişinizi güvenle onaylayabilirsiniz.</div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="guide-box">
+                <div class="guide-title"><span>🚚</span> 4. Kargo ve Teslimat Takibi</div>
+                <div class="guide-desc">Onaylanan siparişiniz, satıcılarımız tarafından en kısa sürede paketlenip kargoya verilir. Siparişinizin kargo takip numarası SMS ve e-posta ile tarafınıza ulaştırılır. "Siparişlerim" sayfasından kargo sürecini anlık olarak izleyebilirsiniz.</div>
+            </div>
+        </div>
+    </div>
+</div>

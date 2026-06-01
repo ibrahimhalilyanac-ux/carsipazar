@@ -1,0 +1,55 @@
+@model UpdateProductImageDto
+
+@{
+    ViewData["Title"] = "ProductImageDetail";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content container-fluid">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="chart-box">
+                <h4>Ürün Görselleri Güncelleme Sayfası</h4>
+                <br />
+                <div class="bs-example" data-example-id="bordered-table">
+
+                    <form method="post">
+                        <input type="hidden" asp-for="ProductImageID" />
+                        <input type="hidden" asp-for="ProductId" />
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="premium-label"><i class="fa fa-image mr-2"></i>Görsel 1 (URL)</label>
+                                <input type="text" class="form-control premium-input" asp-for="Image1" placeholder="https://..." />
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="premium-label"><i class="fa fa-image mr-2"></i>Görsel 2 (URL)</label>
+                                <input type="text" class="form-control premium-input" asp-for="Image2" placeholder="https://..." />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label class="premium-label"><i class="fa fa-image mr-2"></i>Görsel 3 (URL)</label>
+                                <input type="text" class="form-control premium-input" asp-for="Image3" placeholder="https://..." />
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label class="premium-label"><i class="fa fa-image mr-2"></i>Görsel 4 (URL)</label>
+                                <input type="text" class="form-control premium-input" asp-for="Image4" placeholder="https://..." />
+                            </div>
+                        </div>
+
+                        <div class="text-right mt-4">
+                            <button class="btn btn-success btn-lg px-5">
+                                <i class="fa fa-save mr-2"></i>Ürün Görsellerini Güncelle
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

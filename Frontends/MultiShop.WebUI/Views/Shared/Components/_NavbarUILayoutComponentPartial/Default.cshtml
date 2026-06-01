@@ -1,0 +1,89 @@
+@model List<ResultCategoryDto>
+
+<div class="premium-header">
+    <!-- Main Bar: Logo, Search, Actions -->
+    <div class="container-fluid px-xl-5 trendyol-main-bar">
+        <div class="row align-items-center">
+            <!-- Logo -->
+            <div class="col-lg-3">
+                <a href="/Default/Index/" class="text-decoration-none">
+                    <h1 class="trendyol-logo m-0">Çarşı<span>Pazar</span></h1>
+                </a>
+            </div>
+
+            <!-- Search -->
+            <div class="col-lg-6">
+                <form action="/ProductList/Index/" method="get">
+                    <div class="trendyol-search-container mx-auto">
+                        <input type="text" name="search" class="trendyol-search-input" placeholder="Aradığınız ürün, kategori veya markayı yazınız">
+                        <button type="submit" style="background:none; border:none; padding:0;">
+                            <i class="fa fa-search trendyol-search-icon"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- User Actions -->
+            <div class="col-lg-3">
+                <div class="trendyol-user-actions">
+                    <!-- Account Dropdown -->
+                    <div class="account-dropdown">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="#" class="trendyol-action-item">
+                                <i class="far fa-user"></i>
+                                <span>Hesabım</span>
+                            </a>
+                            <div class="account-menu">
+                                <a href="/User/Index/"><i class="far fa-user mr-2"></i> Kullanıcı Bilgilerim</a>
+                                <a href="/User/MyOrder/MyOrderList/"><i class="fas fa-box mr-2"></i> Siparişlerim</a>
+                                <a href="/Discount/Index/"><i class="fas fa-ticket-alt mr-2"></i> İndirim Kuponlarım</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="/Login/LogOut/" class="text-danger"><i class="fas fa-sign-out-alt mr-2"></i> Çıkış Yap</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="/Login/Index/" class="trendyol-action-item">
+                                <i class="far fa-user"></i>
+                                <span>Giriş Yap</span>
+                            </a>
+                            <div class="account-menu">
+                                <a href="/Login/Index/" class="btn btn-primary btn-sm mx-3 my-2 text-white">Giriş Yap</a>
+                                <a href="/Register/Index/" class="btn btn-outline-primary btn-sm mx-3 mb-2">Üye Ol</a>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Favorites -->
+                    <a href="/Favorite/Index/" class="trendyol-action-item">
+                        <i class="far fa-heart"></i>
+                        <span class="action-badge" id="favoriteCountBadge">@ViewBag.FavoriteCount</span>
+                        <span>Favorilerim</span>
+                    </a>
+
+                    <!-- Basket -->
+                    <a href="/ShoppingCart/Index/" class="trendyol-action-item">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="action-badge">@ViewBag.BasketCount</span>
+                        <span>Sepetim</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nav Bar: Categories -->
+    <div class="trendyol-nav-bar d-none d-lg-block">
+        <div class="container-fluid px-xl-5">
+            <ul class="trendyol-nav-list">
+                @foreach (var item in Model.Take(12))
+                {
+                    <li>
+                        <a href="/ProductList/Index/@item.CategoryID" class="trendyol-nav-link">@item.CategoryName.ToUpper()</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

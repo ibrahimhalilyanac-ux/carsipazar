@@ -1,0 +1,140 @@
+@{
+    ViewData["Title"] = "Güvenlik";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Güvenlik</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .security-hero {
+        background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(15, 118, 110, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .security-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .security-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .security-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .sec-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 35px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+    .sec-card:hover {
+        transform: translateY(-5px);
+    }
+    .sec-icon {
+        font-size: 36px;
+        color: #0d9488;
+        margin-bottom: 20px;
+    }
+    .sec-title {
+        font-weight: 800;
+        font-size: 18px;
+        color: #1e293b;
+        margin-bottom: 12px;
+    }
+    .sec-desc {
+        font-size: 14.5px;
+        color: #475569;
+        line-height: 1.7;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="security-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>Güvenli Alışverişin Adresi</h1>
+                <p>ÇarşıPazar'da kişisel verileriniz ve tüm alışveriş işlemleriniz, en son güvenlik protokolleri ve şifreleme yöntemleriyle %100 güvence altındadır.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">🛡️</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-4 mb-4">
+            <div class="sec-card">
+                <div class="sec-icon"><i class="fas fa-lock"></i></div>
+                <div class="sec-title">256-Bit SSL Şifreleme</div>
+                <div class="sec-desc">Sitemizde gerçekleştirilen tüm veri transferleri, endüstri standardı olan 256-bit SSL (Secure Sockets Layer) teknolojisiyle şifrelenir ve üçüncü şahısların erişimine kapatılır.</div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="sec-card">
+                <div class="sec-icon"><i class="fas fa-credit-card"></i></div>
+                <div class="sec-title">3D Secure Ödeme Sistemi</div>
+                <div class="sec-desc">Kredi kartı ve banka kartı işlemlerinizde 3D Secure güvencesi zorunlu tutulmaktadır. Kart bilgileriniz hiçbir şekilde sunucularımızda saklanmaz, doğrudan banka altyapısına iletilir.</div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="sec-card">
+                <div class="sec-icon"><i class="fas fa-user-shield"></i></div>
+                <div class="sec-title">KVKK & Gizlilik Uyum</div>
+                <div class="sec-desc">Kişisel Verilerin Korunması Kanunu (KVKK) gereğince, verileriniz yasal sınırlar çerçevesinde saklanır ve işlenir. İzniniz dışındaki hiçbir veri paylaşımına izin verilmez.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light p-4 p-md-5 rounded-lg mb-5 shadow-sm" style="border-radius: 24px; border: 1px solid #e2e8f0;">
+        <h3 class="font-weight-800 text-dark mb-4" style="font-weight: 800;">Güvenli Alışveriş İpuçları</h3>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="d-flex align-items-start gap-3">
+                    <span style="font-size: 20px; margin-right: 12px;">🔑</span>
+                    <div>
+                        <strong class="text-dark d-block mb-1">Güçlü Şifreler Belirleyin</strong>
+                        <span class="text-muted">Hesabınız için harf, rakam ve özel karakter barındıran tahmin edilmesi güç şifreler tercih edin.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="d-flex align-items-start gap-3">
+                    <span style="font-size: 20px; margin-right: 12px;">⚠️</span>
+                    <div>
+                        <strong class="text-dark d-block mb-1">Şüpheli Linklere Tıklamayın</strong>
+                        <span class="text-muted">ÇarşıPazar adını taklit eden sahte e-posta veya mesajlardaki yönlendirme linklerine karşı daima uyanık olun.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

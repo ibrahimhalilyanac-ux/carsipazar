@@ -1,0 +1,128 @@
+@{
+    ViewData["Title"] = "Satıcı Eğitimleri";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Eğitimler</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .training-hero {
+        background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .training-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .training-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .training-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .t-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 30px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: all 0.3s ease;
+    }
+    .t-card:hover {
+        transform: translateY(-8px);
+        border-color: #6366f1;
+        box-shadow: 0 12px 35px rgba(99, 102, 241, 0.1);
+    }
+    .t-badge {
+        background: #e0e7ff;
+        color: #4f46e5;
+        padding: 6px 14px;
+        border-radius: 99px;
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+    .t-title {
+        font-weight: 800;
+        font-size: 18px;
+        color: #1e293b;
+        margin-bottom: 10px;
+    }
+    .t-desc {
+        font-size: 14px;
+        color: #64748b;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="training-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>ÇarşıPazar Satıcı Akademisi</h1>
+                <p>E-ticaret yolculuğunuzda daima yanınızdayız. İşinizi büyütecek, satışlarınızı artıracak ve mağaza performansınızı zirveye taşıyacak ücretsiz eğitimlerimizi keşfedin.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(99,102,241,0.15));">🎓</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <h2 style="font-weight: 800; color: #1e293b;">Popüler Eğitim Programlarımız</h2>
+        <p style="color: #64748b;">Kendi hızınızda öğrenebileceğiniz zengin video içerikleri ve canlı webinarlar.</p>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="t-card">
+                <span class="t-badge">Temel Seviye</span>
+                <div class="t-title">E-ticarete Giriş & Mağaza Açılışı</div>
+                <div class="t-desc">Ürün listeleme, stok tanımlama, kargo şablonları oluşturma ve ilk siparişi karşılama adımlarını kapsayan başlangıç eğitimi.</div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="t-card">
+                <span class="t-badge">Orta Seviye</span>
+                <div class="t-title">Satış Artırma & SEO Teknikleri</div>
+                <div class="t-desc">Ürün başlığı, açıklaması ve görsellerinin aramalarda en üst sıralarda yer alması için yapılması gereken optimizasyonlar.</div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="t-card">
+                <span class="t-badge">İleri Seviye</span>
+                <div class="t-title">Kampanya & Reklam Yönetimi</div>
+                <div class="t-desc">ÇarşıPazar reklam araçlarını verimli kullanarak reklam bütçenizi en yüksek ciroya dönüştürme ve kampanya kurguları oluşturma.</div>
+            </div>
+        </div>
+    </div>
+</div>

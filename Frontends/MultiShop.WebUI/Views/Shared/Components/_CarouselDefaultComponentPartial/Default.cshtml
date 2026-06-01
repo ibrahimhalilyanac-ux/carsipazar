@@ -1,0 +1,212 @@
+@model List<ResultFeatureSliderDto>
+@inject MultiShop.WebUI.Services.CatalogServices.CategoryServices.ICategoryService CategoryService
+@{
+    int count = 0;
+    var allCategories = new List<MultiShop.DtoLayer.CatalogDtos.CategoryDtos.ResultCategoryDto>();
+    try
+    {
+        allCategories = await CategoryService.GetAllCategoryAsync();
+    }
+    catch { }
+    
+    // We define a list of premium pre-built campaigns in case the database is empty or has placeholder values
+    var staticCampaigns = new List<ResultFeatureSliderDto>
+    {
+        new ResultFeatureSliderDto 
+        { 
+            Title = "Bayram Ettiren Fırsatlar", 
+            Description = "Süpermarket Ürünlerinde Tüm İndirimlere Ek 150 TL İndirim!" 
+        },
+        new ResultFeatureSliderDto 
+        { 
+            Title = "Elektronik Şenliği Başladı", 
+            Description = "Telefon, Kulaklık ve Akıllı Saatlerde Sepette Net %40 İndirim!" 
+        },
+        new ResultFeatureSliderDto 
+        { 
+            Title = "Ev & Yaşam Bahar Kampanyası", 
+            Description = "Evinizi Yenileyecek Dekorasyon Ürünlerinde 2. Ürüne %50 İndirim!" 
+        }
+    };
+    
+    var displayList = Model != null && Model.Any() ? Model : staticCampaigns;
+}
+
+<style>
+    .campaign-slide {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(255, 90, 0, 0.08);
+        height: 430px;
+        position: relative;
+    }
+    .campaign-grad-1 {
+        background: linear-gradient(135deg, #ff4500 0%, #ff8c00 100%);
+    }
+    .campaign-grad-2 {
+        background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+    }
+    .campaign-grad-3 {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    .campaign-grad-4 {
+        background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+    }
+    .campaign-content {
+        padding: 50px;
+        color: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 10;
+        position: relative;
+    }
+    .campaign-badge {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(8px);
+        color: #fff;
+        font-weight: 800;
+        font-size: 12px;
+        padding: 6px 16px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: fit-content;
+    }
+    .campaign-title {
+        font-size: 42px;
+        font-weight: 900;
+        line-height: 1.2;
+        margin-bottom: 16px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .campaign-desc {
+        font-size: 18px;
+        opacity: 0.95;
+        margin-bottom: 28px;
+        max-width: 500px;
+        font-weight: 500;
+    }
+    .campaign-btn {
+        background: #fff;
+        color: #ff5a00;
+        font-weight: 800;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 12px;
+        font-size: 14px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        display: inline-block;
+        width: fit-content;
+        text-align: center;
+    }
+    .campaign-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        color: #ff7824;
+        background: #fff;
+        text-decoration: none;
+    }
+    .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 0 6px;
+        background-color: rgba(255,255,255,0.4);
+    }
+    .carousel-indicators .active {
+        background-color: #fff;
+        width: 24px;
+        border-radius: 5px;
+    }
+    .floating-bag {
+        position: absolute;
+        right: 40px;
+        bottom: 20px;
+        font-size: 180px;
+        opacity: 0.15;
+        user-select: none;
+        pointer-events: none;
+    }
+</style>
+
+<div class="container-fluid mb-3">
+    <div class="row px-xl-5">
+        <div class="col-lg-8">
+            <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @for (int i = 0; i < displayList.Count(); i++)
+                    {
+                        <li data-target="#header-carousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                    }
+                </ol>
+                <div class="carousel-inner" style="border-radius: 20px;">
+
+                    @foreach (var item in displayList)
+                    {
+                        count++;
+                        string gradClass = "";
+                        string emoji = "🛍️";
+                        
+                        if (count % 3 == 1) { gradClass = "campaign-grad-1"; emoji = "🛒"; }
+                        else if (count % 3 == 2) { gradClass = "campaign-grad-2"; emoji = "⚡"; }
+                        else { gradClass = "campaign-grad-3"; emoji = "🎁"; }
+
+                        string targetLink = "/ProductList/Index/";
+                        if (allCategories != null && allCategories.Any())
+                        {
+                            if (item.Title.Contains("Elektronik") || item.Description.Contains("Elektronik") || item.Description.Contains("Telefon"))
+                            {
+                                var cat = allCategories.FirstOrDefault(c => c.CategoryName.Contains("Elektronik"));
+                                if (cat != null) targetLink += cat.CategoryID;
+                            }
+                            else if (item.Title.Contains("Süpermarket") || item.Description.Contains("Süpermarket") || item.Title.Contains("Bayram"))
+                            {
+                                var cat = allCategories.FirstOrDefault(c => c.CategoryName.Contains("Süpermarket"));
+                                if (cat != null) targetLink += cat.CategoryID;
+                            }
+                            else if (item.Title.Contains("Ev") || item.Title.Contains("Dekorasyon") || item.Description.Contains("Dekorasyon"))
+                            {
+                                var cat = allCategories.FirstOrDefault(c => c.CategoryName.Contains("Ev"));
+                                if (cat != null) targetLink += cat.CategoryID;
+                            }
+                        }
+
+                        <div class="carousel-item position-relative @(count == 1 ? "active" : "")" style="height: 430px;">
+                            @if (!string.IsNullOrEmpty(item.ImageUrl) && (item.ImageUrl.StartsWith("http") || item.ImageUrl.StartsWith("/")))
+                            {
+                                <img class="position-absolute w-100 h-100" src="@item.ImageUrl" style="object-fit: cover; border-radius: 20px;">
+                                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center" style="background: rgba(0,0,0,0.3); border-radius: 20px;">
+                                    <div class="p-3" style="max-width: 700px;">
+                                        <span class="campaign-badge">Kampanya</span>
+                                        <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">@item.Title</h1>
+                                        <p class="mx-md-5 px-5 animate__animated animate__bounceIn">@item.Description</p>
+                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="@targetLink">Kampanyayı Keşfet</a>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="w-100 h-100 @gradClass campaign-slide">
+                                    <div class="campaign-content">
+                                        <span class="campaign-badge">Fırsat Kampanyası</span>
+                                        <h2 class="campaign-title">@item.Title</h2>
+                                        <p class="campaign-desc">@item.Description</p>
+                                        <a class="campaign-btn" href="@targetLink">Kampanyalı Ürünleri Keşfet</a>
+                                    </div>
+                                    <div class="floating-bag">@emoji</div>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        @await Component.InvokeAsync("_SpeacialOfferComponentPartial")
+    </div>
+</div>

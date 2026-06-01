@@ -1,0 +1,20 @@
+@if (ViewBag.directory1 != null && !string.IsNullOrEmpty(ViewBag.directory1.ToString()))
+{
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="#">@ViewBag.directory1</a>
+                    @if (ViewBag.directory2 != null && !string.IsNullOrEmpty(ViewBag.directory2.ToString()))
+                    {
+                        <a class="breadcrumb-item text-dark" href="#">@ViewBag.directory2</a>
+                    }
+                    @if (ViewBag.directory3 != null && !string.IsNullOrEmpty(ViewBag.directory3.ToString()))
+                    {
+                        <span class="breadcrumb-item active">@ViewBag.directory3</span>
+                    }
+                </nav>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,580 @@
+@model CreateRegisterDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <title>ÇarşıPazar - Kayıt Ol</title>
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent: #fbbf24;
+            --accent-hover: #f59e0b;
+            --bg-dark: #0f172a;
+            --card-bg: #15182b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --input-bg: rgba(255, 255, 255, 0.03);
+            --input-focus-bg: rgba(255, 255, 255, 0.06);
+            --shadow-glow: rgba(79, 70, 229, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Mesh Gradient Background */
+        .bg-glow-1 {
+            position: absolute;
+            top: -15%;
+            left: -15%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 1;
+            animation: float-slow 25s infinite alternate ease-in-out;
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            bottom: -15%;
+            right: -15%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 1;
+            animation: float-slow-reverse 20s infinite alternate ease-in-out;
+        }
+
+        @@keyframes float-slow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(8%, 10%) scale(1.15); }
+        }
+
+        @@keyframes float-slow-reverse {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-8%, -10%) scale(1.1); }
+        }
+
+        .page-content {
+            width: 100%;
+            max-width: 1000px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        /* Split-screen Dual Card */
+        .register-card {
+            background: rgba(21, 24, 43, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            min-height: 640px;
+        }
+
+        /* Left Visual Section */
+        .visual-panel {
+            flex: 1.1;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.9) 0%, rgba(124, 58, 237, 0.95) 100%);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .visual-panel .logo-area h1 {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            color: #fff;
+            text-transform: none;
+        }
+
+        .visual-panel .logo-area h1 span {
+            color: var(--accent);
+        }
+
+        .visual-panel .content-area {
+            margin: 40px 0;
+        }
+
+        .visual-panel .content-area h2 {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .visual-panel .content-area p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .visual-panel .footer-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .visual-panel .footer-area span {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-login-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            align-self: flex-start;
+            cursor: pointer;
+        }
+
+        .btn-login-link:hover {
+            background: #fff;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Right Form Section */
+        .form-panel {
+            flex: 1.2;
+            padding: 45px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--card-bg);
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+        }
+
+        /* Mobile Logo (hidden on desktop) */
+        .mobile-logo {
+            display: none;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: none;
+            margin-bottom: 20px;
+        }
+
+        .mobile-logo span {
+            color: var(--primary);
+        }
+
+        .form-header h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Compact side-by-side row setup */
+        .form-row-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Input Group & Label Styling */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .input-group.full-width {
+            grid-column: span 2;
+        }
+
+        .input-group label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-align: left;
+            transition: color 0.3s;
+        }
+
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 16px 14px 44px;
+            background: var(--input-bg);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .input-wrapper input:focus {
+            background: var(--input-focus-bg);
+            border-color: var(--primary);
+            box-shadow: 0 0 16px var(--shadow-glow);
+            outline: none;
+        }
+
+        .input-wrapper input:focus ~ label {
+            color: var(--primary);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 15px;
+            pointer-events: none;
+            transition: color 0.3s;
+        }
+
+        .input-wrapper input:focus ~ .input-icon {
+            color: var(--primary);
+        }
+
+        /* Password Toggle inside registration grid */
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 14px;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-password:hover {
+            color: var(--text-main);
+        }
+
+        /* Webkit Autofill Style Overrides */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus {
+            -webkit-text-fill-color: var(--text-main) !important;
+            -webkit-box-shadow: 0 0 0px 1000px var(--card-bg) inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        /* Validation Warning Alert */
+        .alert-banner {
+            display: none;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            color: #fca5a5;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* Action Buttons */
+        .btn-register {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+            border: none;
+            color: #fff;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            grid-column: span 2;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+            background: linear-gradient(135deg, var(--primary-hover) 0%, #4f46e5 100%);
+        }
+
+        /* Responsive Design */
+        @@media (max-width: 768px) {
+            .register-card {
+                flex-direction: column;
+                min-height: auto;
+                border-radius: 20px;
+            }
+
+            .visual-panel {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 40px 30px;
+            }
+
+            .form-row-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .input-group {
+                grid-column: span 2;
+            }
+
+            .mobile-logo {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="page-content">
+        <div class="register-card">
+            <!-- Left Side Panel (Visual info, visible on desktop) -->
+            <div class="visual-panel">
+                <div class="logo-area">
+                    <a href="/Default/Index/" style="text-decoration:none;">
+                        <h1>Çarşı<span>Pazar</span></h1>
+                    </a>
+                </div>
+                
+                <div class="content-area">
+                    <h2>ÇarşıPazar Ailesine Katılın</h2>
+                    <p>En popüler ürünler, benzersiz moda fırsatları ve inanılmaz kampanyalarla dolu dünyamıza 1 dakikada ücretsiz üye olun.</p>
+                </div>
+                
+                <div class="footer-area">
+                    <span>Zaten bir hesabınız var mı? Hemen giriş yapın.</span>
+                    <a href="/Login/Index/" class="btn-login-link">
+                        Giriş Yap <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side Panel (Form, always visible) -->
+            <div class="form-panel">
+                <!-- Mobile Logo -->
+                <div class="mobile-logo">
+                    <a href="/Default/Index/" style="text-decoration:none; color:inherit;">
+                        Çarşı<span>Pazar</span>
+                    </a>
+                </div>
+
+                <div class="form-header">
+                    <h2>Kayıt Ol</h2>
+                    <p>Avantajlı alışveriş dünyasına adım atmak için aşağıdaki bilgileri eksiksiz doldurunuz.</p>
+                </div>
+
+                <!-- Client and Server Validation Feedback Banner -->
+                <div class="alert-banner" id="errorBanner" style="@(!ViewData.ModelState.IsValid ? "display: flex;" : "")">
+                    <div style="color: #ef4444; font-size: 16px; margin-top: 2px;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div style="font-weight: 500;" id="errorMessage">
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            @foreach (var modelState in ViewData.ModelState.Values)
+                            {
+                                foreach (var error in modelState.Errors)
+                                {
+                                    <p style="margin: 0; margin-bottom: 4px;">@error.ErrorMessage</p>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+
+                <form class="form-detail" method="post" id="registerForm" onsubmit="return validateForm()">
+                    <div class="form-row-grid">
+                        <!-- First Name Input -->
+                        <div class="input-group">
+                            <label asp-for="Name">Adınız</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon"><i class="far fa-user"></i></span>
+                                <input type="text" asp-for="Name" id="name" required autocomplete="given-name">
+                            </div>
+                        </div>
+
+                        <!-- Last Name Input -->
+                        <div class="input-group">
+                            <label asp-for="Surname">Soyadınız</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon"><i class="far fa-user"></i></span>
+                                <input type="text" asp-for="Surname" id="surname" required autocomplete="family-name">
+                            </div>
+                        </div>
+
+                        <!-- Email Input -->
+                        <div class="input-group full-width">
+                            <label asp-for="Email">E-posta Adresiniz</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon"><i class="far fa-envelope"></i></span>
+                                <input type="email" asp-for="Email" id="email" required autocomplete="email">
+                            </div>
+                        </div>
+
+                        <!-- Username Input -->
+                        <div class="input-group full-width">
+                            <label asp-for="Username">Kullanıcı Adınız</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon"><i class="fas fa-user-tag"></i></span>
+                                <input type="text" asp-for="Username" id="username" required autocomplete="username">
+                            </div>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="input-group">
+                            <label asp-for="Password">Şifre</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon"><i class="fas fa-lock"></i></span>
+                                <input type="password" asp-for="Password" id="password" required autocomplete="new-password">
+                                <span class="toggle-password" onclick="togglePassword('password', 'togglePassIcon')">
+                                    <i class="far fa-eye" id="togglePassIcon"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password Input -->
+                        <div class="input-group">
+                            <label asp-for="ConfirmPassword">Şifre Tekrar</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon"><i class="fas fa-lock"></i></span>
+                                <input type="password" asp-for="ConfirmPassword" id="confirmPassword" required autocomplete="new-password">
+                                <span class="toggle-password" onclick="togglePassword('confirmPassword', 'toggleConfirmPassIcon')">
+                                    <i class="far fa-eye" id="toggleConfirmPassIcon"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Action Button -->
+                        <button class="btn-register" type="submit">
+                            <i class="fas fa-user-plus"></i> Kayıt İşlemini Tamamla
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Password visibility
+        function togglePassword(inputId, iconId) {
+            var input = document.getElementById(inputId);
+            var icon = document.getElementById(iconId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        // Custom validation on Submit
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var banner = document.getElementById("errorBanner");
+            var message = document.getElementById("errorMessage");
+
+            if (password !== confirmPassword) {
+                banner.style.display = "flex";
+                message.innerText = "Şifreler uyuşmuyor. Lütfen şifrenizi tekrar kontrol edin.";
+                return false;
+            }
+
+            banner.style.display = "none";
+            return true;
+        }
+    </script>
+</body>
+</html>

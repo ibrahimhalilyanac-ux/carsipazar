@@ -1,0 +1,170 @@
+@{
+    ViewData["Title"] = "Elit Üyelik";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Elit Üyelik</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .elite-hero {
+        background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        position: relative;
+        overflow: hidden;
+        border: 2px solid #fbbf24;
+    }
+    .elite-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(251, 191, 36, 0.05);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .elite-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+        background: linear-gradient(to right, #fbbf24, #f59e0b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .elite-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+        color: #f3f4f6;
+    }
+    .benefit-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 30px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: all 0.3s ease;
+    }
+    .benefit-card:hover {
+        transform: translateY(-8px);
+        border-color: #fbbf24;
+    }
+    .benefit-icon {
+        font-size: 32px;
+        color: #d97706;
+        background: #fef3c7;
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .benefit-title {
+        font-weight: 800;
+        font-size: 18px;
+        color: #1e293b;
+        margin-bottom: 10px;
+    }
+    .benefit-desc {
+        font-size: 14.5px;
+        color: #64748b;
+        line-height: 1.6;
+    }
+    .join-box {
+        background: #111827;
+        color: #fff;
+        border-radius: 24px;
+        padding: 50px;
+        text-align: center;
+        border: 1px solid #fbbf24;
+    }
+    .join-btn {
+        background: linear-gradient(to right, #fbbf24, #f59e0b);
+        color: #111827;
+        font-weight: 800;
+        font-size: 16px;
+        padding: 14px 40px;
+        border-radius: 12px;
+        display: inline-block;
+        border: none;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        margin-top: 25px;
+    }
+    .join-btn:hover {
+        transform: scale(1.05);
+        color: #111827;
+        box-shadow: 0 5px 20px rgba(251, 191, 36, 0.4);
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="elite-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>ÇarşıPazar Elite Dünyası</h1>
+                <p>Alışveriş deneyiminizi bir üst seviyeye taşıyın. Ayrıcalıklı fırsatlar, öncelikli hizmetler ve özel indirimlerle dolu seçkin kulübümüze katılın.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(251,191,36,0.3));">👑</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <h2 style="font-weight: 800; color: #1e293b;">Elite Üyelik Ayrıcalıkları</h2>
+        <p style="color: #64748b;">Sıradan bir alışverişin ötesinde, size özel hazırlanan ayrıcalıklar dünyasını keşfedin.</p>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="benefit-card">
+                <div class="benefit-icon">🚚</div>
+                <div class="benefit-title">Limitsiz Ücretsiz Kargo</div>
+                <div class="benefit-desc">Sepet tutarı fark etmeksizin yapacağınız tüm alışverişlerde kargo ücreti ÇarşıPazar tarafından karşılanır.</div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="benefit-card">
+                <div class="benefit-icon">🌟</div>
+                <div class="benefit-title">Öncelikli Müşteri Hattı</div>
+                <div class="benefit-desc">Destek taleplerinizde ve canlı yardım bağlantılarında hiç sıra beklemeden doğrudan özel temsilcinizle görüşün.</div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="benefit-card">
+                <div class="benefit-icon">🎁</div>
+                <div class="benefit-title">Ekstra Puan & Hediyeler</div>
+                <div class="benefit-desc">Her siparişinizden 2 kat daha fazla ÇarşıPuan kazanın, biriken puanları sonraki alışverişlerinizde nakit indirim olarak kullanın.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="join-box">
+                <h3 style="font-weight: 800; color: #fbbf24;">Hemen Elite Üye Ol</h3>
+                <p style="color: #9ca3af; max-width: 500px; margin: 15px auto 0;">Son 3 ayda toplam 1500 TL ve üzeri alışveriş yapan tüm müşterilerimiz Elite üyeliğe ücretsiz geçiş hakkı kazanmaktadır.</p>
+                <button class="join-btn">Başvuru Yap</button>
+            </div>
+        </div>
+    </div>
+</div>

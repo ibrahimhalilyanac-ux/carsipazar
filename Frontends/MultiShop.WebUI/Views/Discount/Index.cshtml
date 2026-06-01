@@ -1,0 +1,215 @@
+@model List<MultiShop.DtoLayer.DiscountDtos.GetDiscountCodeDetailByCode>
+@{
+    ViewData["Title"] = "İndirim Kuponlarım";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<style>
+    .coupons-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+    .coupons-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .coupons-header h2 {
+        font-weight: 800;
+        color: #1e293b;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+    .coupons-header p {
+        color: #64748b;
+        font-size: 16px;
+    }
+    .coupon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 30px;
+    }
+    .coupon-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(255, 90, 0, 0.05);
+        border: 1px solid #ffe4d1;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s ease;
+        height: 150px;
+    }
+    .coupon-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(255, 90, 0, 0.12);
+    }
+    /* Ticket styled half circles */
+    .coupon-card::before, .coupon-card::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #f8f9fa; /* matches page background */
+        border-radius: 50%;
+        left: 120px;
+        z-index: 10;
+        border: 1px solid #ffe4d1;
+    }
+    .coupon-card::before {
+        top: -10px;
+    }
+    .coupon-card::after {
+        bottom: -10px;
+    }
+    .coupon-left {
+        width: 130px;
+        background: linear-gradient(135deg, #ff4500 0%, #ff8c00 100%);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-weight: 800;
+        border-right: 2px dashed #ffe4d1;
+        position: relative;
+    }
+    .coupon-rate {
+        font-size: 36px;
+        line-height: 1;
+        margin-bottom: 4px;
+        font-weight: 900;
+    }
+    .coupon-rate-symbol {
+        font-size: 18px;
+    }
+    .coupon-left-text {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.9;
+    }
+    .coupon-right {
+        flex: 1;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .coupon-code-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .coupon-code {
+        font-size: 22px;
+        font-weight: 900;
+        color: #1e293b;
+        letter-spacing: 0.5px;
+    }
+    .coupon-copy-btn {
+        background: #fff3eb;
+        color: #ff5a00;
+        border: 1px solid #ff5a00;
+        font-weight: 700;
+        padding: 6px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .coupon-copy-btn:hover {
+        background: #ff5a00;
+        color: #fff;
+    }
+    .coupon-validity {
+        font-size: 12px;
+        color: #64748b;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .empty-coupons {
+        text-align: center;
+        padding: 60px 20px;
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+    }
+    .empty-coupons i {
+        font-size: 60px;
+        color: #cbd5e1;
+        margin-bottom: 20px;
+    }
+    .empty-coupons h3 {
+        font-weight: 700;
+        color: #334155;
+        margin-bottom: 8px;
+    }
+    .empty-coupons p {
+        color: #64748b;
+    }
+</style>
+
+<div class="coupons-container">
+    <div class="coupons-header animate__animated animate__fadeIn">
+        <h2>İndirim Kuponlarım</h2>
+        <p>Hesabınıza tanımlanmış aktif indirim kuponları ve hediye çekleri</p>
+    </div>
+
+    @if (Model != null && Model.Any(x => x.IsActive))
+    {
+        <div class="coupon-grid">
+            @foreach (var item in Model.Where(x => x.IsActive))
+            {
+                <div class="coupon-card animate__animated animate__fadeInUp">
+                    <div class="coupon-left">
+                        <div class="coupon-rate">
+                            <span class="coupon-rate-symbol">%</span>@item.Rate
+                        </div>
+                        <div class="coupon-left-text">İndirim</div>
+                    </div>
+                    <div class="coupon-right">
+                        <div class="coupon-code-wrap">
+                            <span class="coupon-code">@item.Code</span>
+                            <button class="coupon-copy-btn" onclick="copyCouponCode('@item.Code', this)">Kopyala</button>
+                        </div>
+                        <div class="coupon-validity">
+                            <i class="far fa-clock"></i> Son Geçerlilik: @item.ValidDate.ToString("dd.MM.yyyy")
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-coupons animate__animated animate__fadeIn">
+            <i class="fas fa-ticket-alt"></i>
+            <h3>Aktif Kuponunuz Bulunmuyor</h3>
+            <p>Şu anda hesabınıza tanımlanmış aktif bir indirim kuponu bulunmamaktadır. Kampanyaları takip etmeye devam edin!</p>
+        </div>
+    }
+</div>
+
+<script>
+    function copyCouponCode(code, button) {
+        navigator.clipboard.writeText(code).then(() => {
+            const originalText = button.innerText;
+            button.innerText = 'Kopyalandı! ✓';
+            button.style.background = '#22c55e';
+            button.style.color = '#fff';
+            button.style.borderColor = '#22c55e';
+            
+            setTimeout(() => {
+                button.innerText = originalText;
+                button.style.background = '#fff3eb';
+                button.style.color = '#ff5a00';
+                button.style.borderColor = '#ff5a00';
+            }, 2000);
+        }).catch(err => {
+            console.error('Kopyalama hatası:', err);
+        });
+    }
+</script>

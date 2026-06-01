@@ -1,0 +1,131 @@
+@{
+    ViewData["Title"] = "Hediye Fikirleri";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Hediye Fikirleri</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .gift-hero {
+        background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(190, 18, 60, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .gift-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .gift-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .gift-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .g-category-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 30px;
+        border: 1px solid #f0f0f0;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .g-category-card:hover {
+        transform: translateY(-8px);
+        border-color: #f43f5e;
+        box-shadow: 0 12px 35px rgba(244, 63, 94, 0.1);
+    }
+    .g-icon {
+        font-size: 45px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+    .g-title {
+        font-weight: 800;
+        font-size: 17px;
+        color: #1e293b;
+        margin-bottom: 8px;
+    }
+    .g-desc {
+        font-size: 13.5px;
+        color: #64748b;
+        line-height: 1.5;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="gift-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>Sevdiklerinizi Mutlu Edin</h1>
+                <p>En özel anlar için özenle seçilmiş hediye fikirleri, kişiselleştirilmiş hediye kutuları ve benzersiz alternatiflerle sevdiklerinizin yüzünü güldürün.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(190,18,60,0.15));">🎁</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mb-5">
+        <h2 style="font-weight: 800; color: #1e293b;">Kategorilere Göre Hediye Fikirleri</h2>
+        <p style="color: #64748b;">Kime hediye arıyorsanız, ona en uygun kategoriyi seçerek keşfetmeye başlayın.</p>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="g-category-card">
+                <span class="g-icon">🎂</span>
+                <div class="g-title">Doğum Günü</div>
+                <div class="g-desc">Yeni yaşını unutulmaz kılacak neşeli ve renkli hediye alternatifleri.</div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="g-category-card">
+                <span class="g-icon">❤️</span>
+                <div class="g-title">Yıl Dönümü</div>
+                <div class="g-desc">Aşkınızı ve en güzel anılarınızı tazeleyecek romantik ve şık seçenekler.</div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="g-category-card">
+                <span class="g-icon">🏡</span>
+                <div class="g-title">Yeni Ev Hediyesi</div>
+                <div class="g-desc">Yaşam alanlarına sıcaklık ve estetik katacak şık ev dekorasyon ürünleri.</div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+            <div class="g-category-card">
+                <span class="g-icon">🎓</span>
+                <div class="g-title">Tebrik & Kariyer</div>
+                <div class="g-desc">Yeni iş, mezuniyet ve başarıları kutlamak için prestijli ofis aksesuarları.</div>
+            </div>
+        </div>
+    </div>
+</div>

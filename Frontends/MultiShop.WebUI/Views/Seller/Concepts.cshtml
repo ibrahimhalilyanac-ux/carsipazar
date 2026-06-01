@@ -1,0 +1,118 @@
+@{
+    ViewData["Title"] = "Temel Kavramlar";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30 shadow-sm" style="border-radius: 12px; padding: 12px 24px;">
+                <a class="breadcrumb-item text-dark" href="/">Ana Sayfa</a>
+                <span class="breadcrumb-item active text-primary">Temel Kavramlar</span>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<style>
+    .concept-hero {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border-radius: 24px;
+        padding: 60px 40px;
+        color: #fff;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+        position: relative;
+        overflow: hidden;
+    }
+    .concept-hero::before {
+        content: '';
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        top: -100px;
+        right: -100px;
+    }
+    .concept-hero h1 {
+        font-weight: 800;
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+    .concept-hero p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0;
+        line-height: 1.6;
+    }
+    .c-box {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+        padding: 35px;
+        border: 1px solid #f0f0f0;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+    .c-box:hover {
+        transform: translateY(-5px);
+        border-color: #64748b;
+    }
+    .c-title {
+        font-weight: 800;
+        font-size: 19px;
+        color: #0f172a;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .c-desc {
+        font-size: 14.5px;
+        color: #475569;
+        line-height: 1.7;
+    }
+</style>
+
+<div class="container-fluid px-xl-5">
+    <div class="concept-hero">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1>Satışa Başlarken: Temel Kavramlar</h1>
+                <p>ÇarşıPazar pazaryeri modelinde başarılı bir satıcı olabilmeniz için bilmeniz gereken en önemli kavramları ve terimleri sizler için derledik.</p>
+            </div>
+            <div class="col-md-4 text-center d-none d-md-block">
+                <span style="font-size: 110px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));">📚</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4">
+            <div class="c-box">
+                <div class="c-title"><span>🏷️</span> Komisyon Oranı</div>
+                <div class="c-desc">Kategorinize bağlı olarak, yaptığınız her başarılı satış işleminden tahsil edilen ve platform hizmet bedelini temsil eden orandır. Komisyon oranları kategoriye göre değişiklik gösterir.</div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="c-box">
+                <div class="c-title"><span>📅</span> Hak Ediş Süresi (Valör)</div>
+                <div class="c-desc">Müşteriye teslim edilen ürünün yasal iade süresi (14 gün) dolduktan sonra, satış bedelinin komisyon düşülerek satıcı hesabına aktarılma gününü belirten süredir.</div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="c-box">
+                <div class="c-title"><span>📦</span> Kargo Baremi</div>
+                <div class="c-desc">Belli bir sepet tutarının altındaki siparişlerin kargo ücretlerinin satıcı ya da alıcı tarafından karşılanması durumunu belirleyen limit sınırıdır. Baremin üstü siparişlerde kargo ücretsiz olur.</div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="c-box">
+                <div class="c-title"><span>⭐</span> Satıcı Puanı</div>
+                <div class="c-desc">Müşteri memnuniyeti, kargolama hızı, paketleme kalitesi ve iptal/iade oranlarınıza göre dinamik olarak hesaplanan, mağazanızın güvenilirliğini ve aramalardaki sıralamasını doğrudan etkileyen puandır.</div>
+            </div>
+        </div>
+    </div>
+</div>

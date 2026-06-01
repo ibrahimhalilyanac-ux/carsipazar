@@ -1,0 +1,77 @@
+@model List<FavoriteItemModel>
+
+@{
+    ViewData["Title"] = "Favorilerim";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-12 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Ürün</th>
+                        <th>Fiyat</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @if (Model.Count > 0)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="align-middle">
+                                    <img src="@item.ProductImageUrl" alt="" style="width: 50px; height:60px; margin-right: 15px;"> 
+                                    @item.ProductName
+                                </td>
+                                <td class="align-middle">@item.ProductPrice ₺</td>
+                                <td class="align-middle">
+                                    <a href="/Favorite/AddToCartAndRemoveFromFavorite/@item.ProductId" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-shopping-cart mr-1"></i> Sepete Ekle
+                                    </a>
+                                    <a href="/Favorite/RemoveFavorite/@item.ProductId" class="btn btn-sm btn-danger ml-2">
+                                        <i class="fa fa-times"></i> Kaldır
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3" class="text-center py-5">
+                                <h5>Henüz favori ürününüz bulunmamaktadır.</h5>
+                                <a href="/ProductList/Index" class="btn btn-primary mt-3">Alışverişe Başla</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Synchronize client-side localStorage with the server-rendered favorites
+        let serverFavs = [];
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <text>serverFavs.push("@item.ProductId");</text>
+            }
+        }
+        localStorage.setItem('favorites', JSON.stringify(serverFavs));
+        
+        // Dynamically update the header badge to match server state immediately
+        let badge = document.getElementById('favoriteCountBadge');
+        if (badge) {
+            badge.innerText = serverFavs.length;
+        }
+    });
+</script>

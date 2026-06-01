@@ -1,0 +1,36 @@
+@model List<ResultOrderDetailDto>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle" style="margin-bottom: 0;">
+        <thead>
+            <tr class="text-muted" style="font-size: 12px; font-weight: 700; background-color: #f8fafc;">
+                <th class="border-0 px-3 py-2">Ürün Bilgisi</th>
+                <th class="border-0 px-3 py-2">Birim Fiyat</th>
+                <th class="border-0 px-3 py-2 text-center">Adet</th>
+                <th class="border-0 px-3 py-2 text-right">Toplam Fiyat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="px-3 py-3 align-middle" style="border-top: 1px solid #f1f5f9;">
+                        <div class="d-flex align-items-center">
+                            <span class="mr-2" style="font-size: 18px;">🛒</span>
+                            <span class="font-weight-bold text-dark" style="font-size: 14px;">@item.ProductName</span>
+                        </div>
+                    </td>
+                    <td class="px-3 py-3 align-middle text-muted" style="border-top: 1px solid #f1f5f9; font-size: 14px;">
+                        @item.ProductPrice.ToString("C2", new System.Globalization.CultureInfo("tr-TR"))
+                    </td>
+                    <td class="px-3 py-3 align-middle text-center font-weight-bold text-dark" style="border-top: 1px solid #f1f5f9; font-size: 14px;">
+                        @item.ProductAmount
+                    </td>
+                    <td class="px-3 py-3 align-middle text-right font-weight-bold" style="border-top: 1px solid #f1f5f9; font-size: 14.5px; color: #4f46e5;">
+                        @item.ProductTotalPrice.ToString("C2", new System.Globalization.CultureInfo("tr-TR"))
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,53 @@
+@model List<ResultProductWithCategoryDto>
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+        <div class="trendyol-product-card shadow-sm">
+            <!-- Badge & Favorite -->
+            @if (new Random().Next(1, 10) > 7)
+            {
+                <div class="product-badge badge-new">YENİ ÜRÜN</div>
+            }
+            else if (new Random().Next(1, 10) > 5)
+            {
+                <div class="product-badge badge-best">EN ÇOK SATAN</div>
+            }
+
+            <button class="product-favorite-btn favorite-btn-@item.ProductId" data-product-id="@item.ProductId" onclick="toggleFavorite('@item.ProductId')">
+                <i class="far fa-heart"></i>
+            </button>
+
+            <!-- Image Area -->
+            <a href="/ProductList/ProductDetail/@item.ProductId" class="product-image-wrapper">
+                <img src="@item.ProductImageUrl" alt="@item.ProductName" onerror="this.src='https://cdn.dsmcdn.com/ty988/product/media/images/20230811/14/403042457/1000100418/1/xml_ver_5959.jpg'">
+            </a>
+
+            <!-- Info Area -->
+            <div class="product-info">
+                <div class="product-name-container">
+                    <span class="product-brand">@(item.Category?.CategoryName ?? "ÇarşıPazar")</span>
+                    <span class="product-name">@item.ProductName</span>
+                </div>
+
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span>(124)</span>
+                </div>
+
+                <div class="product-price-container">
+                    <div class="product-price">@item.ProductPrice.ToString("N0") TL</div>
+                    <div class="product-shipping-badge">Hızlı Teslimat</div>
+                </div>
+
+                <a href="/ShoppingCart/AddBasketItem/@item.ProductId" class="btn-add-to-cart-simple text-center mt-2">
+                    Sepete Ekle
+                </a>
+            </div>
+        </div>
+    </div>
+}

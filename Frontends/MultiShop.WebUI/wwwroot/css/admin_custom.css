@@ -1,0 +1,139 @@
+/* Custom Premium Admin Dashboard Design */
+
+:root {
+    --admin-primary: #4f46e5;
+    --admin-secondary: #0f172a;
+    --admin-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    --admin-bg: #f1f5f9;
+}
+
+body {
+    background-color: var(--admin-bg) !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.wrapper {
+    background-color: var(--admin-bg) !important;
+}
+
+/* Sidebar Styling */
+.main-sidebar {
+    background-color: var(--admin-secondary) !important;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sidebar-menu li a {
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-menu li:hover a, .sidebar-menu li.active a {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-left-color: var(--admin-primary) !important;
+    color: #fff !important;
+}
+
+/* Header/Navbar */
+.main-header {
+    background: #fff !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.main-header .navbar .sidebar-toggle:hover {
+    background: var(--admin-bg) !important;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    background-color: var(--admin-bg) !important;
+}
+
+/* Cards/Boxes */
+.chart-box {
+    background: #fff !important;
+    border-radius: 16px !important;
+    border: none !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    padding: 25px !important;
+    margin-bottom: 30px !important;
+}
+
+/* Tables */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: #f8fafc !important;
+    border-bottom: 2px solid #e2e8f0 !important;
+    color: #64748b !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f5f9 !important;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 10px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary {
+    background: var(--admin-gradient) !important;
+    border: none !important;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    border: none !important;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    border: none !important;
+}
+
+/* Stats Widgets */
+.info-box {
+    border-radius: 16px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+.info-box-icon {
+    border-radius: 12px 0 0 12px !important;
+}
+
+/* Premium Form Elements */
+.premium-label {
+    font-weight: 600 !important;
+    color: #475569 !important;
+    margin-bottom: 8px !important;
+    display: block;
+    font-size: 14px;
+}
+
+.premium-input {
+    border: 2px solid #e2e8f0 !important;
+    background-color: #f8fafc !important;
+    height: 50px !important;
+    font-size: 14px !important;
+}
+
+.premium-input:focus {
+    background-color: #fff !important;
+    border-color: #4f46e5 !important;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1) !important;
+}

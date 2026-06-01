@@ -1,0 +1,141 @@
+@model List<ResultSpecialOfferDto>
+@inject MultiShop.WebUI.Services.CatalogServices.CategoryServices.ICategoryService CategoryService
+<div class="col-lg-4">
+    @{
+        var staticOffers = new List<ResultSpecialOfferDto>
+        {
+            new ResultSpecialOfferDto 
+            { 
+                Title = "Fırsatları Kaçırma", 
+                SubTitle = "Sepette %16'ya ek 100 TL Kupon",
+                ImageUrl = "⚡"
+            },
+            new ResultSpecialOfferDto 
+            { 
+                Title = "Günün Dev Fırsatı", 
+                SubTitle = "Kişisel Bakımda Net %30 İndirim",
+                ImageUrl = "🧼"
+            }
+        };
+
+        var displayList = Model != null && Model.Any() ? Model : staticOffers;
+    }
+    
+    <style>
+        .promo-card {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(255, 90, 0, 0.05);
+            border: 1px solid #ffe4d1;
+            transition: all 0.3s ease;
+        }
+        .promo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 90, 0, 0.1);
+        }
+        .promo-grad-1 {
+            background: linear-gradient(135deg, #fffcf9 0%, #fff0e5 100%);
+        }
+        .promo-grad-2 {
+            background: linear-gradient(135deg, #f9f9ff 0%, #f0f0ff 100%);
+        }
+        .promo-content {
+            padding: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+            position: relative;
+        }
+        .promo-badge {
+            color: #ff5a00;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+        .promo-title {
+            color: #1e293b;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .promo-btn {
+            background: #ff5a00;
+            color: #fff !important;
+            font-weight: 800;
+            padding: 8px 22px;
+            border-radius: 10px;
+            font-size: 13px;
+            width: fit-content;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(255, 90, 0, 0.2);
+            text-align: center;
+            border: none;
+        }
+        .promo-btn:hover {
+            background: #e04f00;
+            transform: scale(1.03);
+            text-decoration: none;
+        }
+        .promo-icon {
+            position: absolute;
+            right: 25px;
+            bottom: 10px;
+            font-size: 80px;
+            opacity: 0.12;
+            user-select: none;
+            pointer-events: none;
+        }
+    </style>
+
+    @for (int i = 0; i < displayList.Take(2).Count(); i++)
+    {
+        var item = displayList[i];
+        string gradClass = i % 2 == 0 ? "promo-grad-1" : "promo-grad-2";
+        string fallbackEmoji = i % 2 == 0 ? "⚡" : "🧼";
+
+        string targetLink = "/ProductList/Index/";
+        if (item.Title.Contains("Fırsatları Kaçırma") || item.SubTitle.Contains("Kupon"))
+        {
+            targetLink = "/Campaign/Index/";
+        }
+        else if (item.SubTitle.Contains("Kişisel Bakım") || item.SubTitle.Contains("Kozmetik") || item.Title.Contains("Günün"))
+        {
+            try
+            {
+                var allCategories = await CategoryService.GetAllCategoryAsync();
+                var cat = allCategories.FirstOrDefault(c => c.CategoryName.Contains("Kozmetik"));
+                if (cat != null) targetLink += cat.CategoryID;
+            }
+            catch { }
+        }
+        
+        <div class="promo-card @gradClass mb-30">
+            @if (!string.IsNullOrEmpty(item.ImageUrl) && (item.ImageUrl.StartsWith("http") || item.ImageUrl.StartsWith("/")))
+            {
+                <img class="position-absolute w-100 h-100" src="@item.ImageUrl" style="object-fit: cover; z-index: 1;">
+                <div class="promo-content" style="background: rgba(255,255,255,0.85); z-index: 2;">
+                    <span class="promo-badge">@item.SubTitle</span>
+                    <h3 class="promo-title">@item.Title</h3>
+                    <a href="@targetLink" class="promo-btn">Keşfet</a>
+                </div>
+            }
+            else
+            {
+                <div class="promo-content">
+                    <span class="promo-badge">@item.SubTitle</span>
+                    <h3 class="promo-title">@item.Title</h3>
+                    <a href="@targetLink" class="promo-btn">Fırsatı Yakala</a>
+                </div>
+                <div class="promo-icon">@(string.IsNullOrEmpty(item.ImageUrl) ? fallbackEmoji : item.ImageUrl)</div>
+            }
+        </div>
+    }
+</div>

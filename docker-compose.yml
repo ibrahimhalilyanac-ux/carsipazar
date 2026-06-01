@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: multishop-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=123456aA*
+    ports:
+      - "1433:1433"
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    container_name: multishop-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - "5432:5432"
+    restart: always
+
+  mongodb:
+    image: mongo:latest
+    container_name: multishop-mongodb
+    ports:
+      - "27017:27017"
+    restart: always
+
+  redis:
+    image: redis:latest
+    container_name: multishop-redis
+    ports:
+      - "6379:6379"
+    restart: always

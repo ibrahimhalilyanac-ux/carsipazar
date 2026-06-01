@@ -1,0 +1,119 @@
+@{
+    ViewData["Title"] = "Sepetim";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+@if (ViewBag.total == null || ViewBag.total == 0)
+{
+    <style>
+        .empty-cart-card {
+            background: #fff;
+            border: 1.5px solid #ebebeb;
+            border-radius: 16px;
+            padding: 32px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            margin: 40px auto;
+            max-width: 1000px;
+            width: 100%;
+            animation: fadeInUp 0.4s ease;
+        }
+        
+        .empty-cart-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .empty-cart-icon-circle {
+            width: 72px;
+            height: 72px;
+            background: #fff3eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff5a00;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(255, 90, 0, 0.1);
+        }
+
+        .empty-cart-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .empty-cart-btn {
+            background: #ff5a00;
+            color: #fff;
+            border: none;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(255, 90, 0, 0.25);
+            display: inline-block;
+        }
+
+        .empty-cart-btn:hover {
+            background: #e04f00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 90, 0, 0.35);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .empty-cart-btn:active {
+            transform: translateY(0);
+        }
+
+        @@keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @@media (max-width: 768px) {
+            .empty-cart-card {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .empty-cart-left {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+
+    <div class="container-fluid">
+        <div class="empty-cart-card">
+            <div class="empty-cart-left">
+                <div class="empty-cart-icon-circle">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h4 class="empty-cart-text">Sepetinizde ürün bulunmamaktadır.</h4>
+            </div>
+            <a href="/Default/Index/" class="empty-cart-btn">Alışverişe Başla</a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+
+            @await Component.InvokeAsync("_ShoppingCartProductListComponentPartial")
+
+            @await Html.PartialAsync("~/Views/Discount/ConfirmDiscountCoupon.cshtml")
+            
+        </div>
+    </div>
+}
